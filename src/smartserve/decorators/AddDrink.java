@@ -4,7 +4,7 @@ import smartserve.Meal;
 import smartserve.drinks.Drink;
 
 /** Decorator that adds a Drink to an Entree (generic, accepts any Drink). */
-public class AddDrink extends EntreeDecorator {
+public class AddDrink extends MealDecorator {
     private final Drink drink;
 
     public AddDrink(Meal entree, Drink drink) {

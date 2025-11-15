@@ -5,10 +5,10 @@ import smartserve.Meal;
 /**
  * Base decorator for Entree.
  */
-public abstract class EntreeDecorator extends Meal {
+public abstract class MealDecorator extends Meal {
     protected final Meal entree;
 
-    public EntreeDecorator(Meal entree) {
+    public MealDecorator(Meal entree) {
         this.entree = entree;
     }
 

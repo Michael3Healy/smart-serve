@@ -7,7 +7,7 @@ import smartserve.desserts.Dessert;
  * Attach a specific Dessert to an Entree. The Dessert instance provides its
  * own description and cost so multiple dessert types can be added.
  */
-public class AddDessert extends EntreeDecorator {
+public class AddDessert extends MealDecorator {
     private final Dessert dessert;
 
     public AddDessert(Meal entree, Dessert dessert) {
