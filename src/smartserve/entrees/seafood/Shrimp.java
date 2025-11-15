@@ -1,8 +1,8 @@
 package smartserve.entrees.seafood;
 
-import smartserve.entrees.Entree;
+import smartserve.Meal;
 
-public class Shrimp extends Entree {
+public class Shrimp extends Meal {
     @Override
     public String getDescription() {
         return "Shrimp Special";

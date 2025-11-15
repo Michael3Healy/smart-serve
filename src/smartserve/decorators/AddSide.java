@@ -1,13 +1,13 @@
 package smartserve.decorators;
 
-import smartserve.entrees.Entree;
+import smartserve.Meal;
 import smartserve.sides.Side;
 
 /** Decorator that adds a Side (e.g., Fries) to an Entree. */
 public class AddSide extends EntreeDecorator {
     private final Side side;
 
-    public AddSide(Entree entree, Side side) {
+    public AddSide(Meal entree, Side side) {
         super(entree);
         this.side = side;
     }

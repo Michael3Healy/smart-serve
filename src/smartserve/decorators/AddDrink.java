@@ -1,13 +1,13 @@
 package smartserve.decorators;
 
+import smartserve.Meal;
 import smartserve.drinks.Drink;
-import smartserve.entrees.Entree;
 
 /** Decorator that adds a Drink to an Entree (generic, accepts any Drink). */
 public class AddDrink extends EntreeDecorator {
     private final Drink drink;
 
-    public AddDrink(Entree entree, Drink drink) {
+    public AddDrink(Meal entree, Drink drink) {
         super(entree);
         this.drink = drink;
     }

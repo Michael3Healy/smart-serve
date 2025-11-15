@@ -1,14 +1,14 @@
 package smartserve.decorators;
 
-import smartserve.entrees.Entree;
+import smartserve.Meal;
 
 /**
  * Base decorator for Entree.
  */
-public abstract class EntreeDecorator extends Entree {
-    protected final Entree entree;
+public abstract class EntreeDecorator extends Meal {
+    protected final Meal entree;
 
-    public EntreeDecorator(Entree entree) {
+    public EntreeDecorator(Meal entree) {
         this.entree = entree;
     }
 

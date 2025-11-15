@@ -1,7 +1,7 @@
 package smartserve.decorators;
 
+import smartserve.Meal;
 import smartserve.desserts.Dessert;
-import smartserve.entrees.Entree;
 
 /**
  * Attach a specific Dessert to an Entree. The Dessert instance provides its
@@ -10,7 +10,7 @@ import smartserve.entrees.Entree;
 public class AddDessert extends EntreeDecorator {
     private final Dessert dessert;
 
-    public AddDessert(Entree entree, Dessert dessert) {
+    public AddDessert(Meal entree, Dessert dessert) {
         super(entree);
         this.dessert = dessert;
     }

@@ -1,8 +1,8 @@
 package smartserve.entrees.steak;
 
-import smartserve.entrees.Entree;
+import smartserve.Meal;
 
-public class Ribeye extends Entree {
+public class Ribeye extends Meal {
     @Override
     public String getDescription() {
         return "Steak";

@@ -1,9 +1,9 @@
-package smartserve.entrees;
+package smartserve;
 
 /**
  * Abstract component representing an Entree in the ordering system.
  */
-public abstract class Entree {
+public abstract class Meal {
     /**
      * Short description of the entree.
      */
