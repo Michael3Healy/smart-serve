@@ -1,3 +1,8 @@
+# Custom
+out/
+.github/
+README.md
+
 # Compiled class file
 *.class
 
