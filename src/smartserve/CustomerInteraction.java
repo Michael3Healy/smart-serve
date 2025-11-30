@@ -61,13 +61,34 @@ public class CustomerInteraction {
     }
 
     /**
-     * Just add a Hamburger or ChickenSandwich as the meal for now.
+     * Choose between Hamburger or ChickenSandwich as the meal for now.
      * This just shows how meals get added to the Cart.
      */
     private void addMeal() {
-        Meal meal = new ChickenSandwich();  // swap out Hamburger class
-        cart.addItem(meal);
-        System.out.println("Added: " + meal.getDescription());
+    System.out.println("Choose a meal:");
+    System.out.println("1) Hamburger");
+    System.out.println("2) Chicken Sandwich");
+    System.out.print("Enter choice: ");
+
+    String choice = scanner.nextLine().trim();
+    Meal meal;
+
+    switch (choice) {
+        case "1":
+            meal = new Hamburger();
+            break;
+        case "2":
+            meal = new ChickenSandwich();
+            break;
+        default:
+            System.out.println("Invalid choice. No meal added.");
+            return;
+    }
+
+    cart.addItem(meal);
+    System.out.println("Added: " + meal.getDescription());
+}
+
     }
 
     /**
