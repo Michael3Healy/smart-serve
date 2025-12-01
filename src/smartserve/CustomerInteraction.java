@@ -89,7 +89,7 @@ public class CustomerInteraction {
     System.out.println("Added: " + meal.getDescription());
 }
 
-    }
+    
 
     /**
      * Allows the customer to choose which discount strategy to apply.
