@@ -1,4 +1,6 @@
 # Custom
+
+.vscode/
 out/
 .github/
 README.md

@@ -1,0 +1,163 @@
+[
+  {
+    "ingredientId": 101,
+    "name": "Burger Bun",
+    "quantityOnHand": 120.0,
+    "reorderThreshold": 40.0,
+    "unit": "units"
+  },
+  {
+    "ingredientId": 102,
+    "name": "Beef Patty",
+    "quantityOnHand": 80.0,
+    "reorderThreshold": 20.0,
+    "unit": "units"
+  },
+  {
+    "ingredientId": 103,
+    "name": "Cheese Slice",
+    "quantityOnHand": 200.0,
+    "reorderThreshold": 50.0,
+    "unit": "units"
+  },
+  {
+    "ingredientId": 104,
+    "name": "Lettuce",
+    "quantityOnHand": 300.0,
+    "reorderThreshold": 50.0,
+    "unit": "grams"
+  },
+  {
+    "ingredientId": 105,
+    "name": "Tomato",
+    "quantityOnHand": 300.0,
+    "reorderThreshold": 50.0,
+    "unit": "grams"
+  },
+  {
+    "ingredientId": 106,
+    "name": "Chicken Breast",
+    "quantityOnHand": 60.0,
+    "reorderThreshold": 20.0,
+    "unit": "units"
+  },
+  {
+    "ingredientId": 201,
+    "name": "Fries",
+    "quantityOnHand": 20000.0,
+    "reorderThreshold": 2000.0,
+    "unit": "grams"
+  },
+  {
+    "ingredientId": 202,
+    "name": "Ketchup",
+    "quantityOnHand": 5000.0,
+    "reorderThreshold": 500.0,
+    "unit": "grams"
+  },
+  {
+    "ingredientId": 203,
+    "name": "Steak Sauce",
+    "quantityOnHand": 200.0,
+    "reorderThreshold": 50.0,
+    "unit": "units"
+  },
+  {
+    "ingredientId": 204,
+    "name": "Butter",
+    "quantityOnHand": 5000.0,
+    "reorderThreshold": 500.0,
+    "unit": "grams"
+  },
+  {
+    "ingredientId": 205,
+    "name": "Lemon",
+    "quantityOnHand": 200.0,
+    "reorderThreshold": 50.0,
+    "unit": "units"
+  },
+  {
+    "ingredientId": 206,
+    "name": "Cocktail Sauce",
+    "quantityOnHand": 1500.0,
+    "reorderThreshold": 300.0,
+    "unit": "grams"
+  },
+  {
+    "ingredientId": 207,
+    "name": "Salt",
+    "quantityOnHand": 10000.0,
+    "reorderThreshold": 2000.0,
+    "unit": "grams"
+  },
+  {
+    "ingredientId": 208,
+    "name": "Pepper",
+    "quantityOnHand": 5000.0,
+    "reorderThreshold": 1000.0,
+    "unit": "grams"
+  },
+  {
+    "ingredientId": 301,
+    "name": "Soda Syrup",
+    "quantityOnHand": 150.0,
+    "reorderThreshold": 50.0,
+    "unit": "liters"
+  },
+  {
+    "ingredientId": 302,
+    "name": "Water",
+    "quantityOnHand": 500.0,
+    "reorderThreshold": 100.0,
+    "unit": "liters"
+  },
+  {
+    "ingredientId": 303,
+    "name": "Wine Bottle",
+    "quantityOnHand": 100.0,
+    "reorderThreshold": 20.0,
+    "unit": "units"
+  },
+  {
+    "ingredientId": 401,
+    "name": "Salmon Fillet",
+    "quantityOnHand": 40.0,
+    "reorderThreshold": 10.0,
+    "unit": "units"
+  },
+  {
+    "ingredientId": 402,
+    "name": "Shrimp",
+    "quantityOnHand": 200.0,
+    "reorderThreshold": 50.0,
+    "unit": "units"
+  },
+  {
+    "ingredientId": 403,
+    "name": "Lobster Tail",
+    "quantityOnHand": 20.0,
+    "reorderThreshold": 5.0,
+    "unit": "units"
+  },
+  {
+    "ingredientId": 501,
+    "name": "Ice Cream Scoop",
+    "quantityOnHand": 300.0,
+    "reorderThreshold": 50.0,
+    "unit": "units"
+  },
+  {
+    "ingredientId": 502,
+    "name": "Cheesecake Slice",
+    "quantityOnHand": 100.0,
+    "reorderThreshold": 20.0,
+    "unit": "units"
+  },
+  {
+    "ingredientId": 503,
+    "name": "Brownie",
+    "quantityOnHand": 120.0,
+    "reorderThreshold": 20.0,
+    "unit": "units"
+  }
+]

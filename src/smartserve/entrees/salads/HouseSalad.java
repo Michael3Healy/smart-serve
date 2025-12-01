@@ -1,6 +1,7 @@
 package smartserve.entrees.salads;
+import smartserve.Meal;
 
-public class HouseSalad extends Salad {
+public class HouseSalad extends Meal {
     @Override
     public String getDescription() {
         return "House Salad";

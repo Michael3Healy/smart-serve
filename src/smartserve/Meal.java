@@ -1,11 +1,11 @@
 package smartserve;
 
 /**
- * Abstract component representing an Entree in the ordering system.
+ * Abstract component representing a Meal in the ordering system.
  */
 public abstract class Meal {
     /**
-     * Short description of the entree.
+     * Short description of the meal.
      */
     public abstract String getDescription();
 

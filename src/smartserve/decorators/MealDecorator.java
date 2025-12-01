@@ -3,7 +3,7 @@ package smartserve.decorators;
 import smartserve.Meal;
 
 /**
- * Base decorator for Entree.
+ * Base decorator for Meal.
  */
 public abstract class MealDecorator extends Meal {
     protected final Meal entree;

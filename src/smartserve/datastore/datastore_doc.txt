@@ -1,0 +1,43 @@
+
+Overview
+- This folde contains data models and repository classes application. It uses the Gson library to read/write JSON files
+  under the `data/` directory.
+
+Key files and responsibilities
+- `JsonDataStore` : Singleton that centralises repository instances and the
+  filesystem paths used for storage.
+- `OrderRepository` : Read/write `CustomerOrder` objects to `data/orders.json`.
+- `MenuRepository` : Read/write `MenuItem` objects to `data/menu.json`.
+- `InventoryRepository` : Read/write `Ingredient` objects to `data/ingredients.json`.
+
+Data model classes
+- `CustomerOrder` : Represents an order placed by a customer; contains `OrderItem`s.
+- `OrderItem` : Single line item, such as hamburger (menuItemId, qty, lineTotal).
+- `MenuItem` : Menu entry (id, name, description, category, price, availability).
+- `MenuItemIngredient` : Associates menu items with ingredients and required quantities (ex. {"ingredientId": "201", "quantity": 2}).
+- `Ingredient` : Inventory item with quantity on-hand and reorder threshold. 
+
+Seeder & sample data
+- `DataSeeder` contains helper methods `seedIngredientsIfNeeded` and
+  `seedMenuIfNeeded` to populate initial ingredient inventory and menu items. We will call these in Main.java.
+
+Usage examples
+- Read data: call `JsonDataStore.getInstance().getMenuRepository().loadAll()` to
+  read menu items into memory.
+- Update/write data: modify objects and call `saveAll(List<T>)` on the
+  appropriate repository to persist changes.
+- Add new order: use `OrderRepository.addOrder(order)` which loads, appends and
+  re-saves the full list.
+
+Other notes
+As an example, inventory tracker should 
+- keep an in-memory list of ingredients, 
+- update quantities via ingredient.setQuantityOnHand()
+- save updated ingredient list to JSON with `InventoryRepository.saveAll({all ingredients including updated ones})`.
+
+See Example_Inventory_Tracker.java for detailed usage example.
+
+Other examples in Customer_Interaction_Example.java and Example_Cart.java
+
+
+

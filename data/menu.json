@@ -1,0 +1,272 @@
+[
+  {
+    "menuItemId": 1001,
+    "name": "Hamburger",
+    "description": "Classic beef hamburger with bun",
+    "category": "sandwich",
+    "price": 11.99,
+    "isAvailable": true,
+    "ingredients": [
+      {
+        "ingredientId": 101,
+        "amountNeeded": 1.0
+      },
+      {
+        "ingredientId": 102,
+        "amountNeeded": 1.0
+      },
+      {
+        "ingredientId": 103,
+        "amountNeeded": 1.0
+      },
+      {
+        "ingredientId": 104,
+        "amountNeeded": 15.0
+      },
+      {
+        "ingredientId": 105,
+        "amountNeeded": 30.0
+      },
+      {
+        "ingredientId": 207,
+        "amountNeeded": 1.0
+      }
+    ]
+  },
+  {
+    "menuItemId": 1003,
+    "name": "Chicken Sandwich",
+    "description": "Grilled chicken sandwich",
+    "category": "sandwich",
+    "price": 12.99,
+    "isAvailable": true,
+    "ingredients": [
+      {
+        "ingredientId": 101,
+        "amountNeeded": 1.0
+      },
+      {
+        "ingredientId": 106,
+        "amountNeeded": 1.0
+      },
+      {
+        "ingredientId": 104,
+        "amountNeeded": 15.0
+      },
+      {
+        "ingredientId": 105,
+        "amountNeeded": 30.0
+      }
+    ]
+  },
+  {
+    "menuItemId": 2001,
+    "name": "Steak",
+    "description": "Grilled steak entree",
+    "category": "steak",
+    "price": 15.99,
+    "isAvailable": true,
+    "ingredients": [
+      {
+        "ingredientId": 102,
+        "amountNeeded": 1.0
+      },
+      {
+        "ingredientId": 203,
+        "amountNeeded": 1.0
+      },
+      {
+        "ingredientId": 204,
+        "amountNeeded": 10.0
+      },
+      {
+        "ingredientId": 207,
+        "amountNeeded": 1.0
+      },
+      {
+        "ingredientId": 208,
+        "amountNeeded": 1.0
+      }
+    ]
+  },
+  {
+    "menuItemId": 3001,
+    "name": "Grilled Salmon",
+    "description": "Grilled salmon fillet",
+    "category": "seafood",
+    "price": 16.25,
+    "isAvailable": true,
+    "ingredients": [
+      {
+        "ingredientId": 401,
+        "amountNeeded": 1.0
+      },
+      {
+        "ingredientId": 204,
+        "amountNeeded": 10.0
+      },
+      {
+        "ingredientId": 205,
+        "amountNeeded": 1.0
+      },
+      {
+        "ingredientId": 207,
+        "amountNeeded": 1.0
+      }
+    ]
+  },
+  {
+    "menuItemId": 3002,
+    "name": "Shrimp Special",
+    "description": "Seasoned shrimp plate",
+    "category": "seafood",
+    "price": 13.5,
+    "isAvailable": true,
+    "ingredients": [
+      {
+        "ingredientId": 402,
+        "amountNeeded": 6.0
+      },
+      {
+        "ingredientId": 206,
+        "amountNeeded": 30.0
+      },
+      {
+        "ingredientId": 205,
+        "amountNeeded": 1.0
+      },
+      {
+        "ingredientId": 207,
+        "amountNeeded": 1.0
+      }
+    ]
+  },
+  {
+    "menuItemId": 3003,
+    "name": "Lobster Tail",
+    "description": "Butter poached lobster tail",
+    "category": "seafood",
+    "price": 22.0,
+    "isAvailable": true,
+    "ingredients": [
+      {
+        "ingredientId": 403,
+        "amountNeeded": 1.0
+      },
+      {
+        "ingredientId": 204,
+        "amountNeeded": 15.0
+      },
+      {
+        "ingredientId": 205,
+        "amountNeeded": 1.0
+      }
+    ]
+  },
+  {
+    "menuItemId": 4001,
+    "name": "Fries",
+    "description": "Crispy french fries",
+    "category": "side",
+    "price": 2.5,
+    "isAvailable": true,
+    "ingredients": [
+      {
+        "ingredientId": 201,
+        "amountNeeded": 200.0
+      },
+      {
+        "ingredientId": 202,
+        "amountNeeded": 15.0
+      },
+      {
+        "ingredientId": 207,
+        "amountNeeded": 1.0
+      }
+    ]
+  },
+  {
+    "menuItemId": 5001,
+    "name": "Soda",
+    "description": "Fountain soda",
+    "category": "drink",
+    "price": 1.99,
+    "isAvailable": true,
+    "ingredients": [
+      {
+        "ingredientId": 301,
+        "amountNeeded": 0.25
+      }
+    ]
+  },
+  {
+    "menuItemId": 5002,
+    "name": "Bottled Water",
+    "description": "Bottled water",
+    "category": "drink",
+    "price": 0.0,
+    "isAvailable": true,
+    "ingredients": [
+      {
+        "ingredientId": 302,
+        "amountNeeded": 0.5
+      }
+    ]
+  },
+  {
+    "menuItemId": 5003,
+    "name": "Glass of Wine",
+    "description": "Red or white wine",
+    "category": "drink",
+    "price": 6.5,
+    "isAvailable": true,
+    "ingredients": [
+      {
+        "ingredientId": 303,
+        "amountNeeded": 0.2
+      }
+    ]
+  },
+  {
+    "menuItemId": 6001,
+    "name": "Ice Cream",
+    "description": "Single scoop ice cream",
+    "category": "dessert",
+    "price": 2.99,
+    "isAvailable": true,
+    "ingredients": [
+      {
+        "ingredientId": 501,
+        "amountNeeded": 1.0
+      }
+    ]
+  },
+  {
+    "menuItemId": 6002,
+    "name": "Cheesecake",
+    "description": "Slice of cheesecake",
+    "category": "dessert",
+    "price": 3.75,
+    "isAvailable": true,
+    "ingredients": [
+      {
+        "ingredientId": 502,
+        "amountNeeded": 1.0
+      }
+    ]
+  },
+  {
+    "menuItemId": 6003,
+    "name": "Brownie",
+    "description": "Chocolate brownie",
+    "category": "dessert",
+    "price": 3.25,
+    "isAvailable": true,
+    "ingredients": [
+      {
+        "ingredientId": 503,
+        "amountNeeded": 1.0
+      }
+    ]
+  }
+]
