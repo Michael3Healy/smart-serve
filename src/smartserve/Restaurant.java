@@ -1,45 +1,42 @@
 package smartserve;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import smartserve.datastore.JsonDataStore;
+import smartserve.datastore.InventoryRepository;
+import smartserve.datastore.MenuRepository;
+import smartserve.datastore.OrderRepository;
+import smartserve.datastore.CustomerOrder;
+import smartserve.datastore.MenuItem;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Restaurant implements Subject {
+public class Restaurant implements Subject{
 	
 	/* Author: Ryan Page
-	 * Version: 1
-	 * Date Last Modified: 11/15/2025
+	 * Version: 2
+	 * Date Last Modified: 12/1/2025
 	 * Description: RESTAURANT CLASS
 	 * 				Outline for the base Restaurant
 	 * 
 	 */
 	
-	// Offered Meals = Currently Available to Order
-
-	JsonDataStore ds = JsonDataStore.getInstance();
-	this.menuRepository = ds.getMenuRepository();
-	this.menuItems = menuRepository.loadAll();
-
-
-	public HashMap<Meal, Boolean> offeredMeals;
-	public HashMap<MealDecorator, Boolean> offeredDecorators;
-	// Sales = Number of each Item sold in the current Cart/Order
-	public HashMap<Meal, Integer> mealSales;
-	public HashMap<MealDecorator, Integer> decoratorSales;
+	
+	InventoryRepository inventoryRepo;
+	MenuRepository menuRepo;
+	List<MenuItem> menuItems;
+	OrderRepository orderRepo;
+	CustomerOrder customerOrder;
+	Menu menuDisplay;
 	// Observers for Observer Pattern
 	private List<Observer> observers;
 	
 	public Restaurant() {
-		//this.outOfStockDecorators = new ArrayList<MealDecorator>();
-		//this.outOfStockMeals = new ArrayList<Meal>();
-		this.mealSales = new HashMap<Meal, Integer>();
-		this.offeredMeals = new HashMap<Meal, Boolean>();
-		this.decoratorSales = new HashMap<MealDecorator, Integer>();
-		this.offeredDecorators = new HashMap<MealDecorator, Boolean>();
+		JsonDataStore ds = JsonDataStore.getInstance();
+        this.inventoryRepo = ds.getInventoryRepository();
+        this.menuRepo = ds.getMenuRepository();
+        this.orderRepo = ds.getOrderRepository();
 		this.observers = new ArrayList<Observer>();
+		this.menuItems = menuRepo.loadAll();
+		this.customerOrder = new CustomerOrder();
 	}
 	
 	// Observer Pattern Methods
@@ -56,72 +53,56 @@ public class Restaurant implements Subject {
 	// Updates Registered Observers
 	public void notifyObservers() {
 		for (Observer observer : observers) {
-			observer.updateInventory(mealSales, decoratorSales);
+			observer.update(customerOrder);
 		}
 	}
-
+	
+	public void inventoryChanged() {
+		notifyObservers();
+	}
+	
+	// Notifies Observers of Inventory Changes
+	public void setInventory() {
+		inventoryChanged();
+	}
 	
 	// Restaurant Methods
-	// Adds Meal to Offered Meals, and applies its Current Inventory Amount
-	// ?ONLY USE AFTER resetOrder()
-	public void addItem(Meal meal) {
-		// resetOrder(); Questioning if Need to do for Each addItem()
-		mealSales.put(meal, 0);
-		offeredMeals.put(meal, true);
-		//setInventory(); Questioning if Need to do for Each addItem()
+	// Displays Welcome Message
+	public void welcome() {
+		menuDisplay.displayWelcome();
 	}
 	
-	// Adds Decorator to Offered Decorators
-	// ?ONLY USE AFTER resetOrder()
-	public void addItem(MealDecorator decorator) {
-		// resetOrder(); Questioning if Need to do for Each addItem()
-		decoratorSales.put(decorator, 0);
-		offeredDecorators.put(decorator, true);
-		//setInventory(); Questioning if Need to do for Each addItem()
+	// Displays Meals/Entree Menu
+	public void meals() {
+		menuDisplay.displayMeals(menuItems);
 	}
 	
-	// Removes Meal from Offered Meals
-	public void removeItem(Meal meal) {
-		// resetOrder(); Questioning if Need to do for Each removeItem()
-		mealSales.remove(meal);
-		offeredMeals.remove(meal);
-		//setInventory(); Questioning if Need to do for Each removeItem()
+	// Displays Sides Menu
+	public void sides() {
+		menuDisplay.displaySides(menuItems);
 	}
 	
-	// Removes Decorator from Offered Meal Decorators
-	public void removeItem(MealDecorator decorator) {
-		// resetOrder(); Questioning if Need to do for Each removeItem()
-		decoratorSales.remove(decorator);
-		offeredDecorators.remove(decorator);
-		//setInventory(); Questioning if Need to do for Each removeItem()
+	// Displays Drinks Menu
+	public void drinks() {
+		menuDisplay.displayDrinks(menuItems);
 	}
 	
-	// Resets the Current Order's Sale Amounts for each Item
-	public void resetOrder() {
-		// For each Meal, set its Sold Amount to 0
-		for (Map.Entry<Meal, Integer> entry : mealSales.entrySet()) {
-			Meal meal = entry.getKey();
-			mealSales.put(meal, 0);
-		}
-		
-		// For each Decorator, set its Sold Amount to 0
-		for (Map.Entry<MealDecorator, Integer> entry : decoratorSales.entrySet()) {
-			MealDecorator decorator = entry.getKey();
-			decoratorSales.put(decorator, 0);
-		}
+	// Displays Dessert Menu
+	public void desserts() {
+		menuDisplay.displayDesserts(menuItems);
 	}
 	
-	// PENDING DATASTORE IMPLEMENTATION
+	// Stores Order into the Order Repository
 	public void storeOrder() {
-		// WRITE ORDER TO DATASTORE
-		// setInventory();
-		// resetOrder();
+		orderRepo.addOrder(customerOrder);
+		setInventory();
+		customerOrder = new CustomerOrder();
 	}
 	
-	// Returns the currently Offered Items for the Menu to Display
-	public void returnOfferedItems() {
-		// GIVES LIST OF OFFERED MEALS, DECORATORS
-		// GIVES LIST OF OUT OF STOCK MEALS, DECORATORS
+	// Customer Order becomes Cart Order, then Restaurant Stores Order
+	public void setOrder(CustomerOrder order) {
+		this.customerOrder = order;
+		storeOrder();
 	}
 
 }
