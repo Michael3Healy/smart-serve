@@ -14,7 +14,9 @@ public class Main {
 
         InventoryTracker tracker = new InventoryTracker();
         Cart cart = new Cart();
-        CustomerInteraction ui = new CustomerInteraction(cart);
+        Menu menuView = new Menu();
+        Restaurant restaurant = new Restaurant();
+        CustomerInteraction ui = new CustomerInteraction(cart, menuView, restaurant);
 
         ui.start();
     }

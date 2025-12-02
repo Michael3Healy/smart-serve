@@ -94,11 +94,6 @@ public class Cart {
         }
     }
 
-    // For now I'm leaving this as a stub. Later this can call InventoryTracker.
-    public void updateInventory() {
-        // InventoryTracker tracker = InventoryTracker.getInstance();
-        // tracker.updateFromCart(this);
-    }
 
     @Override
     public String toString() {
