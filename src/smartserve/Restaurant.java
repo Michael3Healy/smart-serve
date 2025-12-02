@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Restaurant implements Subject{
+import smartserve.datastore.JsonDataStore;
+
+public class Restaurant implements Subject {
 	
 	/* Author: Ryan Page
 	 * Version: 1
@@ -16,6 +18,12 @@ public class Restaurant implements Subject{
 	 */
 	
 	// Offered Meals = Currently Available to Order
+
+	JsonDataStore ds = JsonDataStore.getInstance();
+	this.menuRepository = ds.getMenuRepository();
+	this.menuItems = menuRepository.loadAll();
+
+
 	public HashMap<Meal, Boolean> offeredMeals;
 	public HashMap<MealDecorator, Boolean> offeredDecorators;
 	// Sales = Number of each Item sold in the current Cart/Order
@@ -51,15 +59,7 @@ public class Restaurant implements Subject{
 			observer.updateInventory(mealSales, decoratorSales);
 		}
 	}
-	
-	public void inventoryChanged() {
-		notifyObservers();
-	}
-	
-	// Notifies Observers of Inventory Changes
-	public void setInventory() {
-		inventoryChanged();
-	}
+
 	
 	// Restaurant Methods
 	// Adds Meal to Offered Meals, and applies its Current Inventory Amount

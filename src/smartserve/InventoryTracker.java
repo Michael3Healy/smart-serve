@@ -1,74 +1,79 @@
 package smartserve;
 
-import java.util.*;
+import smartserve.datastore.JsonDataStore;
+import smartserve.datastore.InventoryRepository;
+import smartserve.datastore.MenuRepository;
+import smartserve.datastore.CustomerOrder;
+import smartserve.datastore.OrderItem;
+import smartserve.datastore.MenuItem;
+import smartserve.datastore.MenuItemIngredient;
+import smartserve.datastore.Ingredient;
+
+import java.util.List;
 
 public class InventoryTracker implements Observer {
 
-	/*
-	 * Author: Ryan Page Version: 1 Date Last Modified: 11/15/2025 Part of Observer
-	 * Design Pattern Description: INVENTORYTRACKER, Eager Singleton
-	 */
+    private final InventoryRepository inventoryRepo;
+    private final MenuRepository menuRepo;
 
-	private static InventoryTracker inventoryTracker = new InventoryTracker(); // Eager Singleton
-	HashMap<Meal, Integer> meals; // Maintains Meals and their Inventory Amount
-	HashMap<MealDecorator, Integer> decorators; // Maintains Decorators and their Inventor Amount
-	private Restaurant restaurant;
+    // In-memory snapshots for quick access and modification
+    private final List<Ingredient> ingredients;
+    private final List<MenuItem> menuItems;
 
-	private InventoryTracker() {
-		// Instantiates both HashMaps
-		this.meals = new HashMap<Meal, Integer>();
-		this.decorators = new HashMap<MealDecorator, Integer>();
-	}
+    public InventoryTracker() {
+        JsonDataStore ds = JsonDataStore.getInstance();
+        this.inventoryRepo = ds.getInventoryRepository();
+        this.menuRepo = ds.getMenuRepository();
 
-	public static InventoryTracker getInstance() {
-		// Singleton
-		return inventoryTracker;
-	}
+        this.ingredients = inventoryRepo.loadAll();
+        this.menuItems = menuRepo.loadAll();       
+    }
 
-	public void setRestaurant(Restaurant restaurant) {
-		this.restaurant = restaurant;
-	}
+    @Override
+    public void update(CustomerOrder order) {
+        applyOrder(order);
+    }
 
-	public void getInventory() {
-		// SETS INVENTORY AMOUNTS 
-		// EITHER MANUALLY OR FROM DATASTORE
-	}
+    public void applyOrder(CustomerOrder order) {
+        for (OrderItem item : order.getItems()) {
+            MenuItem menuItem = findMenuItemById(item.getMenuItemId());
 
-	// Updates Tracked Meal and MealDecorator Inventory Amounts
-	public void updateInventory(HashMap<Meal, Integer> mealSales, HashMap<MealDecorator, Integer> decoratorSales) {
-		// For each Meal in the passed MealInventory, Update its Inventory Counter
-		// Iteration Code from:
-		// https://stackoverflow.com/questions/1066589/iterate-through-a-hashmap
-		for (Map.Entry<Meal, Integer> entry : mealSales.entrySet()) {
-			Meal meal = entry.getKey();
-			int mealsSold = entry.getValue();
-			int currentMealInventory = meals.get(meal);
-			int newMealInventory = currentMealInventory - mealsSold;
-			meals.put(meal, newMealInventory);
+            // For each ingredient required by this menu item,
+            // subtract from the Ingredient’s quantityOnHand
+            for (MenuItemIngredient req : menuItem.getIngredients()) {
+                Ingredient ing = findIngredientById(req.getIngredientId());
+                double newQty = ing.getQuantityOnHand() - req.getAmountNeeded() * item.getQuantity();
+                if (newQty < ing.getReorderThreshold()) {
+                    reorderIngredient(ing); // This updates quantityOnHand internally
+                } else {
+                    ing.setQuantityOnHand(newQty);
+                }
+            }
+        }
+        // After updating in memory, persist the new snapshot:
+        inventoryRepo.saveAll(ingredients);
+    }
 
-			// Checks if the Item is OutOfStock, and Updates its InStock/OutOfStock State
-			if (newMealInventory <= 0) {
-				restaurant.offeredMeals.put(meal, false);
-			} else {
-				restaurant.offeredMeals.put(meal, true);
-			}
-		}
-		
-		// For each Decorator in the passed DecoratorInventory, Updates its Inventory Counter
-		for (Map.Entry<MealDecorator, Integer> entry : decoratorSales.entrySet()) {
-			MealDecorator decorator = entry.getKey();
-			int decoratorsSold = entry.getValue();
-			int currentDecoratorInventory = decorators.get(decorator);
-			int newDecoratorInventory = currentDecoratorInventory - decoratorsSold;
-			decorators.put(decorator, newDecoratorInventory);
+    private MenuItem findMenuItemById(int id) {
+        for (MenuItem mi : menuItems) {
+            if (mi.getMenuItemId() == id) {
+                return mi;
+            }
+        }
+        throw new IllegalArgumentException("No menu item: " + id);
+    }
 
-			// Checks if the Decorator is OutOfStock, and Updates its InStock/OutOfStock State
-			if (newDecoratorInventory <= 0) {
-				restaurant.offeredDecorators.put(decorator, false);
-			} else {
-				restaurant.offeredDecorators.put(decorator, true);
-			}
-		}
-	}
+    private Ingredient findIngredientById(int id) {
+        for (Ingredient i : ingredients) {
+            if (i.getIngredientId() == id) {
+                    return i;
+                }
+            }
+        throw new IllegalArgumentException("No ingredient: " + id);
+    }
+
+    private void reorderIngredient(Ingredient ing) {
+        ing.setQuantityOnHand(ing.getReorderThreshold() * 3);
+    }
 
 }
