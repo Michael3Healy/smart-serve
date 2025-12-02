@@ -1,5 +1,13 @@
 package smartserve;
 
+import smartserve.datastore.JsonDataStore;
+import smartserve.datastore.InventoryRepository;
+import smartserve.datastore.MenuRepository;
+import smartserve.datastore.CustomerOrder;
+import smartserve.datastore.OrderItem;
+import smartserve.datastore.MenuItem;
+import java.util.*;
+
 public class Menu {
 	
 	/* Author: Ryan Page
@@ -23,43 +31,69 @@ public class Menu {
 		System.out.println();
 	}
 	
-	// Displays Entree Options
-	public void displayMeals() {
+	public void displayMeals(List<MenuItem> menuItems) {
 		System.out.println("-------------MENU-------------");
 		
-		System.out.println("1: Hamburger");
-		System.out.println("2: Chicken Sandwich");
-		System.out.println("3: Steak");
-		System.out.println("4: Grilled Salmon");
-		System.out.println("5: Shrimp Special");
-		System.out.println("6: Lobster Tail");
+		int i = 1;
+		for (MenuItem item : menuItems) {
+			int id = item.getMenuItemId();
+			if ((1000 < id) && (id < 4000)) {
+				String name = item.getName();
+				double price = item.getPrice();
+				System.out.printf("%d) %-16s %.2f\n", i, name, price);
+				i++;
+			}
+		}
+		
+		System.out.println();
 	}
 	
-	// Displays Side Options
-	public void displaySides() {
+	public void displaySides(List<MenuItem> menuItems) {
 		System.out.println("-------------SIDES-------------");
 		
-		System.out.println("1: Fries");
-		System.out.println("2: None");
+		int i = 1;
+		for (MenuItem item : menuItems) {
+			int id = item.getMenuItemId();
+			if ((4000 < id) && (id < 5000)) {
+				String name = item.getName();
+				double price = item.getPrice();
+				System.out.printf("%d) %-16s %.2f\n", i, name, price);
+				i++;
+			}
+		}
+		
+		System.out.println();
 	}
 	
-	// Displays Drink Options
-	public void displayDrinks() {
+	public void displayDrinks(List<MenuItem> menuItems) {
 		System.out.println("------------DRINKS------------");
 		
-		System.out.println("1: Fountain Soda");
-		System.out.println("2: Bottled Water");
-		System.out.println("3: Glass of Wine");
-		System.out.println("4: None");
+		int i = 1;
+		for (MenuItem item : menuItems) {
+			int id = item.getMenuItemId();
+			if ((5000 < id) && (id < 6000)) {
+				String name = item.getName();
+				double price = item.getPrice();
+				System.out.printf("%d) %-16s %.2f\n", i, name, price);
+				i++;
+			}
+		}
+		System.out.println();
 	}
 	
-	// Displays Dessert Options
-	public void displayDesserts() {
+	public void displayDesserts(List<MenuItem> menuItems) {
 		System.out.println("-----------DESSERTS-----------");
 		
-		System.out.println("1: Ice Cream");
-		System.out.println("2: Cheesecake");
-		System.out.println("3: Chocolate Brownie");
-		System.out.println("4: None");
+		int i = 1;
+		for (MenuItem item : menuItems) {
+			int id = item.getMenuItemId();
+			if ((6000 < id) && (id < 7000)) {
+				String name = item.getName();
+				double price = item.getPrice();
+				System.out.printf("%d) %-16s %.2f\n", i, name, price);
+				i++;
+			}
+		}
+		System.out.println();
 	}
 }
