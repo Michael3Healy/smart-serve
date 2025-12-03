@@ -1,4 +1,5 @@
 package smartserve;
+import smartserve.datastore.CustomerOrder;
 
 public interface Subject {
 	// Add Observer to Subscriber List
@@ -8,5 +9,5 @@ public interface Subject {
 	public void removeObserver(Observer o);
 	
 	// Notify Observers on Subscriber List
-	public void notifyObservers();
+	public void notifyObservers(CustomerOrder order);
 }

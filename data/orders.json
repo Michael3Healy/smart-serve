@@ -1,0 +1,26 @@
+[
+  {
+    "orderId": 108649,
+    "timestamp": "2025-12-03T04:17:38.717560468Z",
+    "items": [
+      {
+        "orderItemId": 971181,
+        "menuItemId": 3001,
+        "cost": 16.25,
+        "description": "Grilled Salmon"
+      },
+      {
+        "drink": {},
+        "entree": {
+          "orderItemId": 197221,
+          "menuItemId": 3001,
+          "cost": 16.25,
+          "description": "Grilled Salmon"
+        },
+        "orderItemId": 0,
+        "menuItemId": 0,
+        "cost": 0.0
+      }
+    ]
+  }
+]

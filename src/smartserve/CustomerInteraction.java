@@ -18,14 +18,12 @@ public class CustomerInteraction {
 
     private final Cart cart;
     private final Menu menuView;
-    private final Restaurant restaurant;
     private final Scanner scanner;
     private final List<MenuItem> menuItems = new ArrayList<>();
 
-    public CustomerInteraction(Cart cart, Menu menuView, Restaurant restaurant) {
+    public CustomerInteraction(Cart cart, Menu menuView) {
         this.cart = cart;
         this.menuView = menuView;
-        this.restaurant = restaurant;
         this.scanner = new Scanner(System.in);
         loadMenuFromDatastore();
     }
@@ -122,7 +120,10 @@ public class CustomerInteraction {
 
         MenuItem selected = entreeOptions.get(index);
 
-        Meal meal = new MenuItemMealAdapter(selected); 
+        OrderItem meal = new OrderItem(selected.getMenuItemId(),
+                                       selected.getPrice(),
+                                       selected.getName());
+
         cart.addItem(meal);
         int cartIndex = cart.getAddedItems().size() - 1;
 
@@ -148,7 +149,7 @@ public class CustomerInteraction {
             return;
         }
 
-        Meal base = cart.getAddedItems().get(cartIndex);
+        OrderItem base = cart.getAddedItems().get(cartIndex);
         boolean customizing = true;
 
         while (customizing) {
@@ -187,7 +188,7 @@ public class CustomerInteraction {
     /**
      * Use Menu.displaySides() for output, then wrap the Meal with AddSide.
      */
-    private Meal addSideDecorator(Meal base) {
+    private OrderItem addSideDecorator(OrderItem base) {
         List<MenuItem> sideOptions = new ArrayList<>();
         for (MenuItem item : menuItems) {
             int id = item.getMenuItemId();
@@ -222,9 +223,12 @@ public class CustomerInteraction {
         MenuItem selected = sideOptions.get(index);
         String name = selected.getName();
 
-        Meal decorated = base;
+        OrderItem decorated = base;
         if ("Fries".equalsIgnoreCase(name)) {
             decorated = new AddSide(base, new Fries());
+            OrderItem fries = new Fries();
+            cart.addItem(fries);
+
         } else if ("Asparagus".equalsIgnoreCase(name)) {
             decorated = new AddSide(base, new Asparagus());
         } else {
@@ -239,7 +243,7 @@ public class CustomerInteraction {
     /**
      * Use Menu.displayDrinks() and wrap with AddDrink.
      */
-    private Meal addDrinkDecorator(Meal base) {
+    private OrderItem addDrinkDecorator(OrderItem base) {
         List<MenuItem> drinkOptions = new ArrayList<>();
         for (MenuItem item : menuItems) {
             int id = item.getMenuItemId();
@@ -274,7 +278,7 @@ public class CustomerInteraction {
         MenuItem selected = drinkOptions.get(index);
         String name = selected.getName();
 
-        Meal decorated = base;
+        OrderItem decorated = base;
         if ("Soda".equalsIgnoreCase(name)) {
             decorated = new AddDrink(base, new Soda());
         } else if ("Water".equalsIgnoreCase(name)) {
@@ -293,7 +297,7 @@ public class CustomerInteraction {
     /**
      * Use Menu.displayDesserts() and wrap with AddDessert.
      */
-    private Meal addDessertDecorator(Meal base) {
+    private OrderItem addDessertDecorator(OrderItem base) {
         List<MenuItem> dessertOptions = new ArrayList<>();
         for (MenuItem item : menuItems) {
             int id = item.getMenuItemId();
@@ -328,7 +332,7 @@ public class CustomerInteraction {
         MenuItem selected = dessertOptions.get(index);
         String name = selected.getName();
 
-        Meal decorated = base;
+        OrderItem decorated = base;
         if ("Brownie".equalsIgnoreCase(name)) {
             decorated = new AddDessert(base, new Brownie());
         } else if ("Cheesecake".equalsIgnoreCase(name)) {
@@ -391,29 +395,14 @@ public class CustomerInteraction {
 
         if (confirm.equals("y")) {
             System.out.println("Order confirmed!");
+            // Persist the order to the datastore via Restaurant -> OrderRepository
+            cart.submitOrder();
+            // Clear the cart display and reset its internal CustomerOrder
             cart.clear();
+            cart.resetOrder();
         } else {
             System.out.println("Checkout cancelled.");
         }
     }
-
-    private static class MenuItemMealAdapter extends Meal {
-        private final MenuItem item;
-
-        public MenuItemMealAdapter(MenuItem item) {
-            this.item = item;
-        }
-
-        @Override
-        public String getDescription() {
-            return item.getName();
-        }
-
-        @Override
-        public double getCost() {
-            return item.getPrice();
-        }
-    }
-
 
 }

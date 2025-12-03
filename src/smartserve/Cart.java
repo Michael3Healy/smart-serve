@@ -1,23 +1,26 @@
 package smartserve;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
+import smartserve.datastore.CustomerOrder;
+import smartserve.datastore.OrderItem;
 import smartserve.discounts.DiscountBehaviors;
 
 public class Cart {
 
-    private final List<Meal> addedItems = new ArrayList<>();
+    private CustomerOrder customerOrder = new CustomerOrder();
     
     private double totalCost;
     
     private DiscountBehaviors strategy;
 
-    public Cart() {
+    private Restaurant restaurant;
+
+    public Cart(Restaurant restaurant) {
          // Start with no discount strategy by default.
         this.strategy = null;
         this.totalCost = 0.0;
+        this.restaurant = restaurant;
     }
 
     /**
@@ -29,43 +32,55 @@ public class Cart {
         updateTotalCost();
     }
 
-    public void addItem(Meal meal) {
-        if (meal != null) {
-            addedItems.add(meal);
+    public void submitOrder() {
+        customerOrder.setTimestamp(java.time.Instant.now().toString());
+        restaurant.placeOrder(customerOrder);
+    }
+
+    public void addItem(OrderItem orderItem) {
+        if (orderItem != null) {
             updateTotalCost();
+            customerOrder.addItem(orderItem);
         }
     }
 
     public boolean removeItem(int index) {
-        if (index < 0 || index >= addedItems.size()) {
+        if (index < 0 || index >= customerOrder.getItemCount()) {
             return false;
         }
-        addedItems.remove(index);
+        customerOrder.removeItem(index);
         updateTotalCost();
         return true;
     }
 
     // replace an existing item with a new (modified) one
-    public boolean modItem(int index, Meal newMeal) {
-        if (index < 0 || index >= addedItems.size() || newMeal == null) {
+    public boolean modItem(int index, OrderItem newItem) {
+        if (index < 0 || index >= customerOrder.getItemCount() || newItem == null) {
             return false;
         }
-        addedItems.set(index, newMeal);
+        customerOrder.modItem(index, newItem);
         updateTotalCost();
         return true;
     }
 
-    public List<Meal> getAddedItems() {
-        return Collections.unmodifiableList(addedItems);
+    public List<OrderItem> getAddedItems() {
+        return customerOrder.getItems();
     }
 
     public boolean isEmpty() {
-        return addedItems.isEmpty();
+        return customerOrder.getItems().isEmpty();
     }
 
     public void clear() {
-        addedItems.clear();
+        customerOrder = new CustomerOrder();
         updateTotalCost();
+    }
+
+    /**
+     * Reset the customer order object so a fresh order is started after submit/clear.
+     */
+    public void resetOrder() {
+        this.customerOrder = new CustomerOrder();
     }
 
     /**
@@ -73,8 +88,8 @@ public class Cart {
      */
     public double getSubtotal() {
         double subtotal = 0.0;
-        for (Meal meal : addedItems) {
-            subtotal += meal.getCost();
+        for (OrderItem item : customerOrder.getItems()) {
+            subtotal += item.getCost();
         }
         return subtotal;
     }
@@ -97,18 +112,18 @@ public class Cart {
 
     @Override
     public String toString() {
-        if (addedItems.isEmpty()) {
+        if (customerOrder.getItems().isEmpty()) {
             return "Cart is empty.";
         }
 
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < addedItems.size(); i++) {
-            Meal meal = addedItems.get(i);
+        for (int i = 0; i < customerOrder.getItemCount(); i++) {
+            OrderItem item = customerOrder.getItems().get(i);
             sb.append(i + 1)
               .append(") ")
-              .append(meal.getDescription())
+              .append(item.getDescription())
               .append(" - $")
-              .append(String.format("%.2f", meal.getCost()))
+              .append(String.format("%.2f", item.getCost()))
               .append(System.lineSeparator());
         }
         sb.append("Subtotal: $")

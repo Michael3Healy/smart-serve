@@ -1,6 +1,6 @@
 package smartserve.menu_items.decorators;
 
-import smartserve.Meal;
+import smartserve.datastore.OrderItem;
 import smartserve.menu_items.decorators.desserts.Dessert;
 
 /**
@@ -10,7 +10,7 @@ import smartserve.menu_items.decorators.desserts.Dessert;
 public class AddDessert extends MealDecorator {
     private final Dessert dessert;
 
-    public AddDessert(Meal entree, Dessert dessert) {
+    public AddDessert(OrderItem entree, Dessert dessert) {
         super(entree);
         this.dessert = dessert;
     }

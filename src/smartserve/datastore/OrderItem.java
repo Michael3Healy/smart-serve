@@ -10,18 +10,17 @@ import java.util.Random;
 public class OrderItem {
     private int orderItemId;
     private int menuItemId;
-    private int quantity;
-    private double lineTotal;
+    private double cost;
+    private String description;
 
     public OrderItem() {
     }
 
-    public OrderItem(int menuItemId, int quantity,
-                     double lineTotal) {
+    public OrderItem(int menuItemId, double cost, String description) {
         this.orderItemId = new Random().nextInt(1000000); // generate a random ID
         this.menuItemId = menuItemId;
-        this.quantity = quantity;
-        this.lineTotal = lineTotal;
+        this.cost = cost;
+        this.description = description;
     }
 
     // -- Getters and Setters --
@@ -30,31 +29,23 @@ public class OrderItem {
         return orderItemId;
     }
 
-    public void setOrderItemId(int orderItemId) {
-        this.orderItemId = orderItemId;
-    }
-
     public int getMenuItemId() {
         return menuItemId;
     }
 
-    public void setMenuItemId(int menuItemId) {
-        this.menuItemId = menuItemId;
+    public double getCost() {
+        return cost;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getDescription() {
+        return description;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public double getLineTotal() {
-        return lineTotal;
-    }
-
-    public void setLineTotal(double lineTotal) {
-        this.lineTotal = lineTotal;
+    public void setCost(double cost) {
+        this.cost = cost;
     }
 }

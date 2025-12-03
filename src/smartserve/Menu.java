@@ -1,10 +1,5 @@
 package smartserve;
 
-import smartserve.datastore.JsonDataStore;
-import smartserve.datastore.InventoryRepository;
-import smartserve.datastore.MenuRepository;
-import smartserve.datastore.CustomerOrder;
-import smartserve.datastore.OrderItem;
 import smartserve.datastore.MenuItem;
 import java.util.*;
 

@@ -1,14 +1,15 @@
 package smartserve.menu_items.decorators;
 
 import smartserve.Meal;
+import smartserve.datastore.OrderItem;
 
 /**
  * Base decorator for Meal.
  */
 public abstract class MealDecorator extends Meal {
-    protected final Meal entree;
+    protected final OrderItem entree;
 
-    public MealDecorator(Meal entree) {
+    public MealDecorator(OrderItem entree) {
         this.entree = entree;
     }
 

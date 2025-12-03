@@ -10,28 +10,17 @@ import java.util.Random;
 
 public class CustomerOrder {
 
-    // Enum for order status for consistency
-    public enum OrderStatus {
-        NEW, READY, COMPLETED
-    }
-
     private int orderId;
-    private String timestamp;  
-    private OrderStatus status;
-    private double subtotal;
-    final private double tax = 0.04;
-    private double total;
-    private Integer discountId;
+    private String timestamp;
     private List<OrderItem> items = new ArrayList<>(); // Holds all items in the order. Initialized to avoid null checks.
 
-    // No-arg constructor because gson needs to call it to convert from JSON back to class
+    // No-arg constructor because gson needs to call it to convert from JSON back to class. Also called by Cart when initializing.
     public CustomerOrder() {
+        this.orderId = new Random().nextInt(1, 1_000_000); // Random order ID for simplicity
     }
 
     public CustomerOrder(List<OrderItem> initialItems) {
-        this.orderId = new Random().nextInt(1000000);
-        this.timestamp = java.time.Instant.now().toString();
-        this.status = OrderStatus.NEW;
+        this.orderId = new Random().nextInt(1, 1_000_000); // Random order ID for simplicity
         this.items = initialItems;
     }
 
@@ -47,53 +36,28 @@ public class CustomerOrder {
         return timestamp;
     }
 
-    public OrderStatus getStatus() {
-        return status;
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
-
-    public void setStatus(OrderStatus status) {
-        this.status = status;
-    }
-
-    public double getSubtotal() {
-        return subtotal;
-    }
-
-    public void setSubtotal(double subtotal) {
-        this.subtotal = subtotal;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public Integer getDiscountId() {
-        return discountId;
-    }
-
-    public void setDiscountId(Integer discountId) {
-        this.discountId = discountId;
-    }
-
 
     public List<OrderItem> getItems() {
         return items;
+    }
+
+    public int getItemCount() {
+        return items.size();
+    }
+
+    public void removeItem(int index) {
+        items.remove(index);
     }
 
     public void setItems(List<OrderItem> items) {
         this.items = items;
     }
 
-    // Calculate subtotal and total based on items and tax
-    public void calcTotals() {
-        double sum = 0;
-        
-        for (OrderItem item : items) {
-        sum += item.getLineTotal();
-        }
-
-        subtotal = sum;
-        total = subtotal + (subtotal * tax);
+    public void modItem(int index, OrderItem newItem) {
+        items.set(index, newItem);
     }
 
 }

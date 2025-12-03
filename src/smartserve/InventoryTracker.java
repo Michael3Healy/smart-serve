@@ -42,7 +42,7 @@ public class InventoryTracker implements Observer {
             // subtract from the Ingredient’s quantityOnHand
             for (MenuItemIngredient req : menuItem.getIngredients()) {
                 Ingredient ing = findIngredientById(req.getIngredientId());
-                double newQty = ing.getQuantityOnHand() - req.getAmountNeeded() * item.getQuantity();
+                double newQty = ing.getQuantityOnHand() - req.getAmountNeeded();
                 if (newQty < ing.getReorderThreshold()) {
                     reorderIngredient(ing); // This updates quantityOnHand internally
                 } else {
@@ -54,7 +54,7 @@ public class InventoryTracker implements Observer {
         inventoryRepo.saveAll(ingredients);
     }
 
-    private MenuItem findMenuItemById(int id) {
+    public MenuItem findMenuItemById(int id) {
         for (MenuItem mi : menuItems) {
             if (mi.getMenuItemId() == id) {
                 return mi;
@@ -63,7 +63,7 @@ public class InventoryTracker implements Observer {
         throw new IllegalArgumentException("No menu item: " + id);
     }
 
-    private Ingredient findIngredientById(int id) {
+    public Ingredient findIngredientById(int id) {
         for (Ingredient i : ingredients) {
             if (i.getIngredientId() == id) {
                     return i;

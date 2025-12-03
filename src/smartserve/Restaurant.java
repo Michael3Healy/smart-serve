@@ -9,7 +9,7 @@ import smartserve.datastore.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Restaurant implements Subject{
+public class Restaurant implements Subject {
 	
 	/* Author: Ryan Page
 	 * Version: 2
@@ -19,12 +19,10 @@ public class Restaurant implements Subject{
 	 * 
 	 */
 	
-	
 	InventoryRepository inventoryRepo;
 	MenuRepository menuRepo;
 	List<MenuItem> menuItems;
 	OrderRepository orderRepo;
-	CustomerOrder customerOrder;
 	Menu menuDisplay;
 	// Observers for Observer Pattern
 	private List<Observer> observers;
@@ -36,7 +34,6 @@ public class Restaurant implements Subject{
         this.orderRepo = ds.getOrderRepository();
 		this.observers = new ArrayList<Observer>();
 		this.menuItems = menuRepo.loadAll();
-		this.customerOrder = new CustomerOrder();
 	}
 	
 	// Observer Pattern Methods
@@ -51,19 +48,10 @@ public class Restaurant implements Subject{
 	}
 	
 	// Updates Registered Observers
-	public void notifyObservers() {
+	public void notifyObservers(CustomerOrder order) {
 		for (Observer observer : observers) {
-			observer.update(customerOrder);
+			observer.update(order);
 		}
-	}
-	
-	public void inventoryChanged() {
-		notifyObservers();
-	}
-	
-	// Notifies Observers of Inventory Changes
-	public void setInventory() {
-		inventoryChanged();
 	}
 	
 	// Restaurant Methods
@@ -92,17 +80,9 @@ public class Restaurant implements Subject{
 		menuDisplay.displayDesserts(menuItems);
 	}
 	
-	// Stores Order into the Order Repository
-	public void storeOrder() {
-		orderRepo.addOrder(customerOrder);
-		setInventory();
-		customerOrder = new CustomerOrder();
+	// Stores Order into the Order Repository and notifies Inventory Tracker
+	public void placeOrder(CustomerOrder order) {
+		orderRepo.addOrder(order);
+		notifyObservers(order);
 	}
-	
-	// Customer Order becomes Cart Order, then Restaurant Stores Order
-	public void setOrder(CustomerOrder order) {
-		this.customerOrder = order;
-		storeOrder();
-	}
-
 }

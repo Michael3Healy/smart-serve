@@ -1,9 +1,6 @@
 package smartserve;
 
 import smartserve.datastore.JsonDataStore;
-import smartserve.InventoryTracker;
-import smartserve.Cart;
-import smartserve.CustomerInteraction;
 import smartserve.datastore.DataSeeder;
 
 public class Main {
@@ -13,10 +10,11 @@ public class Main {
         DataSeeder.seedMenuIfNeeded(ds);
 
         InventoryTracker tracker = new InventoryTracker();
-        Cart cart = new Cart();
-        Menu menuView = new Menu();
         Restaurant restaurant = new Restaurant();
-        CustomerInteraction ui = new CustomerInteraction(cart, menuView, restaurant);
+        Cart cart = new Cart(restaurant);
+        Menu menuView = new Menu();
+        restaurant.registerObserver(tracker);
+        CustomerInteraction ui = new CustomerInteraction(cart, menuView);
 
         ui.start();
     }

@@ -1,9 +1,11 @@
 package smartserve;
 
+import smartserve.datastore.OrderItem;
+
 /**
  * Abstract component representing a Meal in the ordering system.
  */
-public abstract class Meal {
+public abstract class Meal extends OrderItem {
     /**
      * Short description of the meal.
      */

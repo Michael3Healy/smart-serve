@@ -1,13 +1,13 @@
 package smartserve.menu_items.decorators;
 
-import smartserve.Meal;
 import smartserve.menu_items.decorators.drinks.Drink;
+import smartserve.datastore.OrderItem;
 
 /** Decorator that adds a Drink to an Entree (generic, accepts any Drink). */
 public class AddDrink extends MealDecorator {
     private final Drink drink;
 
-    public AddDrink(Meal entree, Drink drink) {
+    public AddDrink(OrderItem entree, Drink drink) {
         super(entree);
         this.drink = drink;
     }
