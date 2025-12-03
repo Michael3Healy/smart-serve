@@ -390,8 +390,6 @@ public class CustomerInteraction {
         String confirm = scanner.nextLine().trim().toLowerCase();
 
         if (confirm.equals("y")) {
-            CustomerOrder order = buildCustomerOrderFromCart(cart);
-            restaurant.setOrder(order);
             System.out.println("Order confirmed!");
             cart.clear();
         } else {
@@ -417,8 +415,5 @@ public class CustomerInteraction {
         }
     }
 
-    private CustomerOrder buildCustomerOrderFromCart(Cart cart) {
-        return new CustomerOrder();
-    }
 
 }
