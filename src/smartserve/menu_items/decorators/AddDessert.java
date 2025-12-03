@@ -1,27 +1,17 @@
 package smartserve.menu_items.decorators;
 
 import smartserve.datastore.OrderItem;
-import smartserve.menu_items.decorators.desserts.Dessert;
 
-/**
- * Attach a specific Dessert to an Entree. The Dessert instance provides its
- * own description and cost so multiple dessert types can be added.
- */
-public class AddDessert extends MealDecorator {
-    private final Dessert dessert;
+/** Decorator that adds a Dessert to an Entree. */
+public class AddDessert extends OrderItem {
 
-    public AddDessert(OrderItem entree, Dessert dessert) {
-        super(entree);
-        this.dessert = dessert;
-    }
-
-    @Override
-    public String getDescription() {
-        return entree.getDescription() + ", " + dessert.getDescription();
-    }
-
-    @Override
-    public double getCost() {
-        return entree.getCost() + dessert.getCost();
+    public AddDessert(OrderItem entree, OrderItem dessert) {
+        super(
+            entree.getMenuItemId(),
+            // Total cost is entree cost + dessert cost
+            entree.getCost() + dessert.getCost(),
+            // Description is entree description + dessert description
+            entree.getDescription() + ", " + dessert.getDescription()
+        );
     }
 }

@@ -2,14 +2,14 @@
   {
     "ingredientId": 101,
     "name": "Burger Bun",
-    "quantityOnHand": 116.0,
+    "quantityOnHand": 115.0,
     "reorderThreshold": 40.0,
     "unit": "units"
   },
   {
     "ingredientId": 102,
     "name": "Beef Patty",
-    "quantityOnHand": 75.0,
+    "quantityOnHand": 74.0,
     "reorderThreshold": 20.0,
     "unit": "units"
   },
@@ -23,56 +23,56 @@
   {
     "ingredientId": 104,
     "name": "Lettuce",
-    "quantityOnHand": 240.0,
+    "quantityOnHand": 225.0,
     "reorderThreshold": 50.0,
     "unit": "grams"
   },
   {
     "ingredientId": 105,
     "name": "Tomato",
-    "quantityOnHand": 180.0,
+    "quantityOnHand": 150.0,
     "reorderThreshold": 50.0,
     "unit": "grams"
   },
   {
     "ingredientId": 106,
     "name": "Chicken Breast",
-    "quantityOnHand": 59.0,
+    "quantityOnHand": 58.0,
     "reorderThreshold": 20.0,
     "unit": "units"
   },
   {
     "ingredientId": 201,
     "name": "Fries",
-    "quantityOnHand": 19800.0,
+    "quantityOnHand": 19600.0,
     "reorderThreshold": 2000.0,
     "unit": "grams"
   },
   {
     "ingredientId": 202,
     "name": "Ketchup",
-    "quantityOnHand": 4985.0,
+    "quantityOnHand": 4970.0,
     "reorderThreshold": 500.0,
     "unit": "grams"
   },
   {
     "ingredientId": 203,
     "name": "Steak Sauce",
-    "quantityOnHand": 198.0,
+    "quantityOnHand": 197.0,
     "reorderThreshold": 50.0,
     "unit": "units"
   },
   {
     "ingredientId": 204,
     "name": "Butter",
-    "quantityOnHand": 4980.0,
+    "quantityOnHand": 4910.0,
     "reorderThreshold": 500.0,
     "unit": "grams"
   },
   {
     "ingredientId": 205,
     "name": "Lemon",
-    "quantityOnHand": 200.0,
+    "quantityOnHand": 195.0,
     "reorderThreshold": 50.0,
     "unit": "units"
   },
@@ -86,14 +86,14 @@
   {
     "ingredientId": 207,
     "name": "Salt",
-    "quantityOnHand": 9994.0,
+    "quantityOnHand": 9989.0,
     "reorderThreshold": 2000.0,
     "unit": "grams"
   },
   {
     "ingredientId": 208,
     "name": "Pepper",
-    "quantityOnHand": 4998.0,
+    "quantityOnHand": 4997.0,
     "reorderThreshold": 1000.0,
     "unit": "grams"
   },
@@ -121,7 +121,7 @@
   {
     "ingredientId": 401,
     "name": "Salmon Fillet",
-    "quantityOnHand": 40.0,
+    "quantityOnHand": 37.0,
     "reorderThreshold": 10.0,
     "unit": "units"
   },
@@ -135,7 +135,7 @@
   {
     "ingredientId": 403,
     "name": "Lobster Tail",
-    "quantityOnHand": 20.0,
+    "quantityOnHand": 18.0,
     "reorderThreshold": 5.0,
     "unit": "units"
   },

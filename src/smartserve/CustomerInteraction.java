@@ -226,8 +226,6 @@ public class CustomerInteraction {
         OrderItem decorated = base;
         if ("Fries".equalsIgnoreCase(name)) {
             decorated = new AddSide(base, new Fries());
-            OrderItem fries = new Fries();
-            cart.addItem(fries);
 
         } else if ("Asparagus".equalsIgnoreCase(name)) {
             decorated = new AddSide(base, new Asparagus());

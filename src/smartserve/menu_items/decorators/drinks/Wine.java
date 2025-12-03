@@ -1,13 +1,9 @@
 package smartserve.menu_items.decorators.drinks;
 
-public class Wine extends Drink {
-    @Override
-    public String getDescription() {
-        return "Wine";
-    }
+import smartserve.datastore.OrderItem;
 
-    @Override
-    public double getCost() {
-        return 8.00;
+public class Wine extends OrderItem {
+    public Wine() {
+        super(5003, 5.00, "Wine");
     }
 }

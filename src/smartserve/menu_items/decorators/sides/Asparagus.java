@@ -1,14 +1,9 @@
 package smartserve.menu_items.decorators.sides;
 
+import smartserve.datastore.OrderItem;
 
-public class Asparagus extends Side {
-    @Override
-    public String getDescription() {
-        return "Asparagus";
-    }
-
-    @Override
-    public double getCost() {
-        return 4.99;
+public class Asparagus extends OrderItem {
+    public Asparagus() {
+        super(4002, 4.99, "Asparagus");
     }
 }

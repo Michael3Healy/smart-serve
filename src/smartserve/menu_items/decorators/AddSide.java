@@ -1,24 +1,17 @@
 package smartserve.menu_items.decorators;
 
-import smartserve.menu_items.decorators.sides.Side;
 import smartserve.datastore.OrderItem;
 
-/** Decorator that adds a Side (e.g., Fries) to an Entree. */
-public class AddSide extends MealDecorator {
-    private final Side side;
+/** Decorator that adds a Side to an Entree. */
+public class AddSide extends OrderItem {
 
-    public AddSide(OrderItem entree, Side side) {
-        super(entree);
-        this.side = side;
-    }
-
-    @Override
-    public String getDescription() {
-        return entree.getDescription() + ", " + side.getDescription();
-    }
-
-    @Override
-    public double getCost() {
-        return entree.getCost() + side.getCost();
+    public AddSide(OrderItem entree, OrderItem side) {
+        super(
+            entree.getMenuItemId(),
+            // Total cost is entree cost + side cost
+            entree.getCost() + side.getCost(),
+            // Description is entree description + side description
+            entree.getDescription() + ", " + side.getDescription()
+        );
     }
 }

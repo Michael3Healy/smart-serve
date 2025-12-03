@@ -1,13 +1,9 @@
 package smartserve.menu_items.decorators.desserts;
 
-public class Cheesecake extends Dessert {
-    @Override
-    public String getDescription() {
-        return "Cheesecake";
-    }
+import smartserve.datastore.OrderItem;
 
-    @Override
-    public double getCost() {
-        return 3.75;
+public class Cheesecake extends OrderItem {
+    public Cheesecake() {
+        super(6002, 3.75, "Cheesecake");
     }
 }

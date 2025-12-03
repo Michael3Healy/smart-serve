@@ -1,24 +1,17 @@
 package smartserve.menu_items.decorators;
 
-import smartserve.menu_items.decorators.drinks.Drink;
 import smartserve.datastore.OrderItem;
 
-/** Decorator that adds a Drink to an Entree (generic, accepts any Drink). */
-public class AddDrink extends MealDecorator {
-    private final Drink drink;
+/** Decorator that adds a Drink to an Entree. */
+public class AddDrink extends OrderItem {
 
-    public AddDrink(OrderItem entree, Drink drink) {
-        super(entree);
-        this.drink = drink;
-    }
-
-    @Override
-    public String getDescription() {
-        return entree.getDescription() + ", " + drink.getDescription();
-    }
-
-    @Override
-    public double getCost() {
-        return entree.getCost() + drink.getCost();
+    public AddDrink(OrderItem entree, OrderItem drink) {
+        super(
+            entree.getMenuItemId(),
+            // Total cost is entree cost + drink cost
+            entree.getCost() + drink.getCost(),
+            // Description is entree description + drink description
+            entree.getDescription() + ", " + drink.getDescription()
+        );
     }
 }

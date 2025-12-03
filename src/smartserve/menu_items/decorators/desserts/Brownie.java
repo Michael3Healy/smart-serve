@@ -1,13 +1,9 @@
 package smartserve.menu_items.decorators.desserts;
 
-public class Brownie extends Dessert {
-    @Override
-    public String getDescription() {
-        return "Brownie";
-    }
+import smartserve.datastore.OrderItem;
 
-    @Override
-    public double getCost() {
-        return 3.25;
+public class Brownie extends OrderItem {
+    public Brownie() {
+        super(6001, 3.25, "Brownie");
     }
 }
